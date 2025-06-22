@@ -142,6 +142,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url('manage-karir') }}">
+                        <i class="mdi mdi-briefcase-outline"></i>
+                        <span> Karir </span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{ url('manage-regulasi') }}">
                         <i class="mdi mdi-file-document-outline"></i>
                         <span> Regulasi </span>

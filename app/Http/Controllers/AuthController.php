@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Session;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -26,6 +27,25 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
+        // Validasi manual CAPTCHA terlebih dahulu
+        $request->validate([
+            'g-recaptcha-response' => 'required'
+        ], [
+            'g-recaptcha-response.required' => 'Verifikasi CAPTCHA wajib diisi.'
+        ]);
+
+        // Kirim ke server Google untuk validasi
+        $recaptcha = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => env('NOCAPTCHA_SECRET'),
+            'response' => $request->input('g-recaptcha-response'),
+        ]);
+
+        if (! $recaptcha->json('success')) {
+            return redirect()->back()
+                ->withErrors(['g-recaptcha-response' => 'Verifikasi CAPTCHA gagal. Silakan coba lagi.'])
+                ->withInput();
+        }
 
         $username = $request->username;
         $password = $request->password;

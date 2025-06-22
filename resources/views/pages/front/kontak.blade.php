@@ -7,6 +7,7 @@
 <meta property="og:image" content="{{ asset('themes/front/') }}/images/logo-hitam.png" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ url()->current() }}" />
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @endpush
 
 @section('content')
@@ -80,6 +81,13 @@
                                             <textarea name="message" id="message" placeholder="Your Message" required></textarea>
                                         </fieldset>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="g-recaptcha" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
+                                        @if ($errors->has('g-recaptcha-response'))
+                                            <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                        @endif
+                                    </div>
+                                    <!-- Tambahkan tombol kirim ini -->
                                     <div class="col-12">
                                         <fieldset>
                                             <button type="submit" id="form-submit" class="blue-yellow-button">Send Message</button>

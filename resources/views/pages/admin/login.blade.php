@@ -1,7 +1,7 @@
 @extends('pages.admin.layout.auth')
 
 @push('head')
-	
+
 @endpush
 
 @section('content')
@@ -49,6 +49,14 @@
                                         <label class="custom-control-label" for="checkbox-signin">Remember me</label>
                                     </div>
                                 </div> --}}
+                                <div class="form-group">
+                                    <div class="g-recaptcha" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="text-danger d-block mt-1">
+                                            {{ $errors->first('g-recaptcha-response') }}
+                                        </span>
+                                    @endif
+                                </div>
 
                                 <div class="form-group text-center">
                                     <button class="btn btn-primary btn-block waves-effect waves-light" type="submit"> Log In </button>
@@ -153,5 +161,6 @@ document.getElementById("formLogin").addEventListener("submit", function(event) 
     }
 });
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 @endpush

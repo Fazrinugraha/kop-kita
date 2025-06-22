@@ -23,6 +23,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RegulasiController;
 use App\Http\Controllers\ManfaatController;
+use App\Http\Controllers\KarirController;
 
 
 /*
@@ -166,4 +167,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/simpan-manfaat', [ManfaatController::class, 'store'])->name('store.manfaat');
     Route::put('/perbaharui-manfaat/{id}', [ManfaatController::class, 'update'])->name('update.manfaat');
     Route::delete('/hapus-manfaat/{id}', [ManfaatController::class, 'destroy'])->name('delete.manfaat');
+
+    Route::get('/manage-karir', [KarirController::class, 'index'])->name('manage.karir');
+    Route::post('/simpan-karir', [KarirController::class, 'store'])->name('store.karir');
+    Route::put('/perbaharui-karir/{id}', [KarirController::class, 'update'])->name('update.karir');
+    Route::delete('/hapus-karir/{id}', [KarirController::class, 'destroy'])->name('delete.karir');
 });
