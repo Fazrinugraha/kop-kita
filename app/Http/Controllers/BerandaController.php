@@ -359,4 +359,34 @@ class BerandaController extends Controller
         $dataview->layanan = Layanan::all();
         return view('pages/front/detail_pengabdian', compact('dataview'));
     }
+
+    public function karir()
+    {
+        $dataview = new \stdClass();
+        $dataview->title = 'Karir ' . getTitle();
+        $dataview->karir = \App\Models\Karir::orderBy('id_karir', 'DESC')->get();
+        return view('pages/front/karir', compact('dataview'));
+    }
+
+    public function karir_detail($id, $slug)
+    {
+        $dataview = new \stdClass();
+
+        $karir = \App\Models\Karir::find($id);
+        if (!$karir) {
+            abort(404);
+        }
+
+        // Optional: Track views if needed
+        $viewedKarirs = session()->get('viewed_karirs', []);
+        if (!in_array($id, $viewedKarirs)) {
+            session()->push('viewed_karirs', $id);
+            $karir->view = $karir->view + 1;
+            $karir->save();
+        }
+
+        $dataview->title = 'Karir | ' . $karir->judul_posisi;
+        $dataview->karir = $karir;
+        return view('pages/front/detail_karir', compact('dataview'));
+    }
 }

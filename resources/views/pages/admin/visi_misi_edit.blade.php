@@ -7,9 +7,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title">{{ $dataview->page_title }}</h4>
-                <a href="{{ route('visi_misi.create') }}" class="btn btn-primary btn-sm">Tambah Visi & Misi</a>
+            <div class="page-title-box">
+                <h4 class="page-title">Edit Visi & Misi</h4>
             </div>
         </div>
     </div>
@@ -30,10 +29,8 @@
         </div>
     @endif
 
-    {{-- Form edit hanya jika $visiMisi tersedia --}}
-    @isset($visiMisi)
     <div class="card-box">
-        <h4 class="header-title mb-4">Edit Visi & Misi</h4>
+        <h4 class="header-title mb-4">Form Edit Visi & Misi</h4>
         <form action="{{ route('visi_misi.update', $visiMisi->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -63,43 +60,8 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+            <a href="{{ route('visi_misi.index') }}" class="btn btn-secondary">Batal</a>
         </form>
-    </div>
-    <hr>
-    @endisset
-
-    {{-- Daftar Visi Misi --}}
-    <div class="card-box">
-        <h4 class="header-title mb-4">Daftar Visi & Misi</h4>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Jenis</th>
-                    <th>Judul</th>
-                    <th>Isi</th>
-                    <th>Urutan</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($visiMisis as $item)
-                <tr>
-                    <td>{{ $item->jenis }}</td>
-                    <td>{{ $item->judul }}</td>
-                    <td>{!! Str::limit(strip_tags($item->isi), 100) !!}</td>
-                    <td>{{ $item->urutan }}</td>
-                    <td>
-                        <a href="{{ route('visi_misi.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('visi_misi.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
 </div>
 @endsection

@@ -42,7 +42,7 @@ class VisiMisiController extends Controller
         $dataview->page_title = 'Edit Visi & Misi';
 
         $visiMisi = VisiMisi::findOrFail($id);
-        return view('pages.admin.visi_misi', compact('visiMisi', 'dataview'));
+        return view('pages.admin.visi_misi_edit', compact('visiMisi', 'dataview'));
     }
 
 

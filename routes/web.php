@@ -68,6 +68,11 @@ Route::get('/informasi/kegiatan/{id}/{slug}', [BerandaController::class, 'kegiat
 Route::get('/informasi/pengabdian', [BerandaController::class, 'pengabdian'])->name('pengabdian');
 Route::get('/informasi/pengabdian/{id}/{slug}', [BerandaController::class, 'pengabdian_detail'])->name('detail.pengabdian');
 
+Route::get('/informasi/karir', [BerandaController::class, 'karir'])->name('karir');
+
+
+Route::get('/informasi/karir/{id}/{slug}', [BerandaController::class, 'karir_detail'])->name('detail.karir');
+
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Route::post('/post-login', [AuthController::class, 'login'])->'login';
@@ -140,8 +145,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::put('/perbaharui-kontak/{id}', [KontakController::class, 'update'])->name('update.kontak');
 
     Route::resource('sejarah', sejarahController::class)->except(['create', 'show']);
-    Route::resource('visi_misi', VisiMisiController::class)->except(['show', 'create', 'store']);
-    Route::get('visi_misi/{id}/edit', [VisiMisiController::class, 'edit'])->name('visi_misi.edit');
+    Route::resource('visi_misi', VisiMisiController::class)->except(['show']);
 
     // Pindahkan route contact messages ke sini
     Route::get('/contact-messages', [\App\Http\Controllers\Admin\ContactMessageController::class, 'index'])

@@ -9,6 +9,8 @@
 
 @section('content')
 <div class="container-fluid">
+
+    <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
@@ -21,13 +23,17 @@
                 <h4 class="page-title">{{ $dataview->page_title }}</h4>
             </div>
         </div>
-    </div>
+    </div>     
+    <!-- end page title --> 
 
     <div class="row">
         <div class="col-12 mb-4">
+            
             @if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -35,45 +41,58 @@
                     </ul>
                 </div>
             @endif
-
-            <button class="btn btn-primary float-right" data-toggle="modal" data-target=".form-tambah">
-                <i class="mdi mdi-plus"></i> Tambah Lowongan
-            </button>
+            
+            <div class="btn btn-primary float-right" data-toggle="modal" data-target=".form-tambah">
+                <span class="btn-label"><i class="mdi mdi-plus"></i>
+                </span>Tambah Data
+            </div>
 
             @include('pages.admin.karir.modal_tambah')
+            
         </div>
     </div>
-
+                        
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
+                
                 <div class="table-responsive">
-                    <table id="datatable" class="table table-bordered dt-responsive nowrap">
+                    <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
-                            <tr>
-                                <th>No</th>
-                                <th>Posisi</th>
-                                <th>Divisi</th>
-                                <th>Penempatan</th>
-                                <th>Deskripsi</th>
-                                <th>Kualifikasi</th>
-                                <th>Benefit</th>
-                                <th>Batas Lamar</th>
-                                <th>Kuota</th>
-                                <th>Status</th>
-                                <th>Dokumen Syarat</th>
-                                <th>Aksi</th>
-                            </tr>
+                        <tr>
+                            <th>No</th>
+                            <th>Foto</th>
+                            <th>Judul Posisi</th>
+                            <th>Divisi</th>
+                            <th>Penempatan</th>
+                            <th>Deskripsi</th>
+                            <th>Kualifikasi</th>
+                            <th>Benefit</th>
+                            <th>Batas Lamar</th>
+                            <th>Kuota</th>
+                            <th>Status</th>
+                            <th>View</th>
+                            <th>Dokumen Syarat</th>
+                            <th>Aksi</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @forelse ($dataview->karir as $index => $item)
+                            @php
+                                $nomor = 1;
+                            @endphp
+                            @forelse ($dataview->karir as $item)
                             <tr>
-                                <td>{{ $index + 1 }}</td>
+                                <th width="10" scope="row">{{ $nomor++ }}</th>
+                                <td>
+                                    @if($item->foto)
+                                        <img src="{{ asset($item->foto) }}" height="150">
+                                    @endif
+                                </td>
                                 <td>{{ $item->judul_posisi }}</td>
                                 <td>{{ $item->divisi }}</td>
                                 <td>{{ $item->penempatan }}</td>
-                                <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->kualifikasi }}</td>
+                                <td>{!! Str::limit($item->deskripsi, 50) !!}</td>
+                                <td>{!! Str::limit($item->kualifikasi, 50) !!}</td>
                                 <td>{{ $item->benefit ?? '-' }}</td>
                                 <td>{{ $item->batas_lamar ? tanggal_indo($item->batas_lamar) : '-' }}</td>
                                 <td>{{ $item->kuota }}</td>
@@ -82,6 +101,7 @@
                                         {{ $item->status }}
                                     </span>
                                 </td>
+                                <td>{{ $item->view ?? 0 }}</td>
                                 <td>
                                     @if ($item->dokumen_syarat)
                                         <a href="{{ asset($item->dokumen_syarat) }}" target="_blank">Lihat Dokumen</a>
@@ -89,11 +109,11 @@
                                         -
                                     @endif
                                 </td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target=".form-edit{{ $item->id_karir }}">
+                                <td nowrap>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".form-edit{{ $item->id_karir }}">
                                         <i class="mdi mdi-pencil"></i>
                                     </button>
-                                    <button class="btn btn-danger" data-toggle="modal" data-target=".form-hapus{{ $item->id_karir }}">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".form-hapus{{ $item->id_karir }}">
                                         <i class="mdi mdi-delete"></i>
                                     </button>
                                 </td>
@@ -104,33 +124,44 @@
 
                             @empty
                             <tr>
-                                <td colspan="7" class="text-center">Tidak ada data</td>
+                                <th colspan="13" class="text-center">Tidak ada data</th>
                             </tr>
                             @endforelse
+                        
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>
 @endsection
 
 @push('script')
 <script src="{{ asset('themes/back/') }}/libs/select2/select2.min.js"></script>
 <script src="{{ asset('themes/back/') }}/js/pages/form-advanced.init.js"></script>
+
+<!-- Datatable plugin js -->
 <script src="{{ asset('themes/back/') }}/libs/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ asset('themes/back/') }}/libs/datatables/dataTables.bootstrap4.min.js"></script>
+
 <script src="{{ asset('themes/back/') }}/libs/datatables/dataTables.responsive.min.js"></script>
 <script src="{{ asset('themes/back/') }}/libs/datatables/responsive.bootstrap4.min.js"></script>
+
 <script src="{{ asset('themes/back/') }}/libs/datatables/dataTables.buttons.min.js"></script>
 <script src="{{ asset('themes/back/') }}/libs/datatables/buttons.bootstrap4.min.js"></script>
+
 <script src="{{ asset('themes/back/') }}/libs/jszip/jszip.min.js"></script>
 <script src="{{ asset('themes/back/') }}/libs/pdfmake/pdfmake.min.js"></script>
 <script src="{{ asset('themes/back/') }}/libs/pdfmake/vfs_fonts.js"></script>
+
 <script src="{{ asset('themes/back/') }}/libs/datatables/buttons.html5.min.js"></script>
 <script src="{{ asset('themes/back/') }}/libs/datatables/buttons.print.min.js"></script>
+
 <script src="{{ asset('themes/back/') }}/libs/datatables/dataTables.keyTable.min.js"></script>
 <script src="{{ asset('themes/back/') }}/libs/datatables/dataTables.select.min.js"></script>
+
+<!-- Datatables init -->
 <script src="{{ asset('themes/back/') }}/js/pages/datatables.init.js"></script>
 @endpush

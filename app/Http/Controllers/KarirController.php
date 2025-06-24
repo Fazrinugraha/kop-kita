@@ -32,16 +32,30 @@ class KarirController extends Controller
             'batas_lamar'     => 'nullable|date',
             'kuota'           => 'required|integer|min:0',
             'status'          => 'required|in:Aktif,Non Aktif',
-            'dokumen_syarat'  => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'dokumen_syarat'  => 'nullable|file|mimes:pdf,doc,docx|max:5048',
+            'foto'            => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5048',
         ]);
 
-        $karir = new Karir($request->except('dokumen_syarat'));
+        $karir = new Karir($request->except(['dokumen_syarat', 'foto']));
 
+        // Simpan dokumen syarat
         if ($request->hasFile('dokumen_syarat')) {
             $file = $request->file('dokumen_syarat');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('dokumen_syarat', $filename, 'public');
-            $karir->dokumen_syarat = 'storage/' . $path;
+            $destinationPath = public_path('storage/karir/dokumen_syarat');
+            if (!file_exists($destinationPath)) mkdir($destinationPath, 0755, true);
+            $file->move($destinationPath, $filename);
+            $karir->dokumen_syarat = 'storage/karir/dokumen_syarat/' . $filename;
+        }
+
+        // Simpan foto
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $destinationPath = public_path('storage/karir/foto_karir');
+            if (!file_exists($destinationPath)) mkdir($destinationPath, 0755, true);
+            $file->move($destinationPath, $filename);
+            $karir->foto = 'storage/karir/foto_karir/' . $filename;
         }
 
         if ($karir->save()) {
@@ -65,20 +79,36 @@ class KarirController extends Controller
             'batas_lamar'     => 'nullable|date',
             'kuota'           => 'required|integer|min:0',
             'status'          => 'required|in:Aktif,Non Aktif',
-            'dokumen_syarat'  => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'dokumen_syarat'  => 'nullable|file|mimes:pdf,doc,docx|max:5048',
+            'foto'            => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5048',
         ]);
 
-        $karir->fill($request->except('dokumen_syarat'));
+        $karir->fill($request->except(['dokumen_syarat', 'foto']));
 
+        // Update dokumen syarat
         if ($request->hasFile('dokumen_syarat')) {
             if ($karir->dokumen_syarat && file_exists(public_path($karir->dokumen_syarat))) {
                 unlink(public_path($karir->dokumen_syarat));
             }
-
             $file = $request->file('dokumen_syarat');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('dokumen_syarat', $filename, 'public');
-            $karir->dokumen_syarat = 'storage/' . $path;
+            $destinationPath = public_path('storage/karir/dokumen_syarat');
+            if (!file_exists($destinationPath)) mkdir($destinationPath, 0755, true);
+            $file->move($destinationPath, $filename);
+            $karir->dokumen_syarat = 'storage/karir/dokumen_syarat/' . $filename;
+        }
+
+        // Update foto
+        if ($request->hasFile('foto')) {
+            if ($karir->foto && file_exists(public_path($karir->foto))) {
+                unlink(public_path($karir->foto));
+            }
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $destinationPath = public_path('storage/karir/foto_karir');
+            if (!file_exists($destinationPath)) mkdir($destinationPath, 0755, true);
+            $file->move($destinationPath, $filename);
+            $karir->foto = 'storage/karir/foto_karir/' . $filename;
         }
 
         if ($karir->save()) {
@@ -94,6 +124,10 @@ class KarirController extends Controller
 
         if ($karir->dokumen_syarat && file_exists(public_path($karir->dokumen_syarat))) {
             unlink(public_path($karir->dokumen_syarat));
+        }
+
+        if ($karir->foto && file_exists(public_path($karir->foto))) {
+            unlink(public_path($karir->foto));
         }
 
         if ($karir->delete()) {
