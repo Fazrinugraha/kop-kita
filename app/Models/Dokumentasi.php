@@ -14,8 +14,12 @@ class Dokumentasi extends Model
     protected $fillable = [
         'judul',
         'tanggal',
-        'jenis_media',
-        'media_path',
         'deskripsi',
     ];
+
+    // Relasi ke media
+    public function media()
+    {
+        return $this->hasMany(DokumentasiMedia::class, 'dokumentasi_id');
+    }
 }

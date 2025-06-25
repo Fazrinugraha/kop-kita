@@ -24,6 +24,8 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RegulasiController;
 use App\Http\Controllers\ManfaatController;
 use App\Http\Controllers\KarirController;
+use App\Http\Controllers\DokumentasiController;
+
 
 
 /*
@@ -44,6 +46,7 @@ Route::get('/tentang', [BerandaController::class, 'tentang'])->name('tentang');
 Route::get('/sejarah', [BerandaController::class, 'sejarah'])->name('sejarah');
 // Route::get('/visi_misi', [BerandaController::class, 'visiMisi'])->name('visi_misi');
 Route::get('/team', [BerandaController::class, 'team'])->name('team');
+Route::get('/dokumentasi', [BerandaController::class, 'dokumentasi'])->name('frontend.dokumentasi');
 
 Route::get('/manfaat', [BerandaController::class, 'manfaat'])->name('manfaat');
 
@@ -176,4 +179,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/simpan-karir', [KarirController::class, 'store'])->name('store.karir');
     Route::put('/perbaharui-karir/{id}', [KarirController::class, 'update'])->name('update.karir');
     Route::delete('/hapus-karir/{id}', [KarirController::class, 'destroy'])->name('delete.karir');
+
+    Route::get('/manage-dokumentasi', [DokumentasiController::class, 'index'])->name('manage.dokumentasi');
+    Route::post('/simpan-dokumentasi', [DokumentasiController::class, 'store'])->name('dokumentasi.store');
+    Route::put('/perbaharui-dokumentasi/{id}', [DokumentasiController::class, 'update'])->name('dokumentasi.update');
+    Route::delete('/hapus-dokumentasi/{id}', [DokumentasiController::class, 'destroy'])->name('dokumentasi.destroy');
+    Route::delete('/dokumentasi/media/{id}', [DokumentasiController::class, 'destroyMedia'])->name('dokumentasi.media.destroy');
 });

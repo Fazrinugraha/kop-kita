@@ -19,6 +19,7 @@ use App\Models\Sejarah;
 use App\Models\VisiMisi;
 use App\Models\Regulasi;
 use App\Models\Manfaat;
+use App\Models\Dokumentasi;
 
 class BerandaController extends Controller
 {
@@ -110,7 +111,7 @@ class BerandaController extends Controller
         // Fetch sejarah data ordered by tahun ascending
         $dataview->sejarahs = \App\Models\Sejarah::orderBy('tahun', 'asc')->get();
 
-        // ✅ Tambahkan data Visi & Misi
+        // Tambahkan data Visi & Misi
         $dataview->visi = \App\Models\VisiMisi::where('jenis', 'Visi')->orderBy('urutan')->get();
         $dataview->misi = \App\Models\VisiMisi::where('jenis', 'Misi')->orderBy('urutan')->get();
         return view('pages/front/sejarah', compact('dataview'));
@@ -391,5 +392,23 @@ class BerandaController extends Controller
         $dataview->title = 'Karir | ' . $karir->judul_posisi;
         $dataview->karir = $karir;
         return view('pages/front/detail_karir', compact('dataview'));
+    }
+    public function dokumentasi(Request $request)
+    {
+        $tipe = $request->query('tipe');
+        $dataview = new \stdClass();
+        $dataview->title = 'Dokumentasi | ' . getTitle();
+
+        // Ambil semua dokumentasi dengan media terkait
+        $query = Dokumentasi::with(['media' => function ($q) use ($tipe) {
+            if ($tipe === 'foto' || $tipe === 'video') {
+                $q->where('jenis_media', $tipe);
+            }
+        }])->orderBy('tanggal', 'DESC');
+
+        $dataview->dokumentasi = $query->get();
+        $dataview->tipe = $tipe;
+
+        return view('pages/front/dokumentasi', compact('dataview'));
     }
 }

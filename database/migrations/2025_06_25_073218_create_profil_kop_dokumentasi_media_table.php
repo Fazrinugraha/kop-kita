@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profil_kop_dokumentasi', function (Blueprint $table) {
+        Schema::create('profil_kop_dokumentasi_media', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->date('tanggal');
-            $table->text('deskripsi')->nullable();
+            $table->foreignId('dokumentasi_id')->constrained('profil_kop_dokumentasi')->onDelete('cascade');
+            $table->enum('jenis_media', ['foto', 'video']);
+            $table->string('media_path');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profil_kop_dokumentasi');
+        Schema::dropIfExists('profil_kop_dokumentasi_media');
     }
 };

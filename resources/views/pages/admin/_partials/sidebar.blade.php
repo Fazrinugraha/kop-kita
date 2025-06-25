@@ -154,6 +154,13 @@
                         <span> Regulasi </span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('manage-dokumentasi') }}">
+                        <i class="mdi mdi-file-image"></i>
+                        <span> Dokumentasi </span>
+                    </a>
+                </li>
+
 
                 <li class="menu-title mt-2">Lainnya</li>
 

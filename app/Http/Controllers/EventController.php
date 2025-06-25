@@ -18,12 +18,12 @@ class EventController extends Controller
     public function index()
     {
         $dataview = new \stdClass();
-        $dataview->title = 'Event | '.getTitle();
+        $dataview->title = 'Event | ' . getTitle();
         $dataview->page_title = 'Event';
         $dataview->data_admin = Auth::guard('admin')->user();
-        
+
         $dataview->event = Event::all();
-        
+
         return view('pages/admin/event', compact('dataview'));
     }
 
@@ -70,21 +70,21 @@ class EventController extends Controller
         if ($request->hasFile('file_gambar')) {
             // Dapatkan file dari request
             $file = $request->file('file_gambar');
-    
+
             // Tentukan nama file unik
             $filename = time() . '_' . $file->getClientOriginalName();
-    
+
             // Tentukan lokasi penyimpanan
             $destinationPath = public_path('storage/event');
-    
+
             // Buat folder jika belum ada
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
-    
+
             // Pindahkan file ke folder tujuan
             $file->move($destinationPath, $filename);
-    
+
             // Simpan nama file ke database
             $event->file_gambar = 'storage/event/' . $filename;
         }
@@ -96,13 +96,13 @@ class EventController extends Controller
         $event->link = $request->link;
         $event->nama_link = $request->nama_link;
         $event->deskripsi = $request->deskripsi;
-        
-        if($event->save()){
+        $event->view = 0;
+
+        if ($event->save()) {
             return redirect()->back()->with('success', 'Berhasil disimpan.');
         } else {
             return redirect()->back()->with('failed', 'Gagal disimpan.');
         }
-
     }
 
     /**
@@ -155,10 +155,10 @@ class EventController extends Controller
             'lokasi.required' => 'Telepon tidak boleh kosong',
             'deskripsi.required' => 'Sosmed Facebook tidak boleh kosong',
         ]);
-    
+
         // Cari data berdasarkan ID
         $event = Event::find($id);
-    
+
         if (!$event) {
             return redirect()->back()->with('failed', 'Data tidak ditemukan.');
         }
@@ -169,24 +169,24 @@ class EventController extends Controller
             if ($event->file_gambar && file_exists(public_path($event->file_gambar))) {
                 unlink(public_path($event->file_gambar));
             }
-            
-    
+
+
             // Simpan file baru
             $file = $request->file('file_gambar');
             $filename = time() . '_' . $file->getClientOriginalName();
             $destinationPath = public_path('storage/event');
-    
+
             // Buat folder jika belum ada
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
-    
+
             $file->move($destinationPath, $filename);
-    
+
             // Update path file gambar di database
             $event->file_gambar = 'storage/event/' . $filename;
         }
-    
+
         // Update data lainnya
         $event->tanggal = $request->tanggal;
         $event->nama_kegiatan = $request->nama_kegiatan;
@@ -195,7 +195,7 @@ class EventController extends Controller
         $event->link = $request->link;
         $event->nama_link = $request->nama_link;
         $event->deskripsi = $request->deskripsi;
-    
+
         // Simpan data
         if ($event->save()) {
             return redirect()->back()->with('success', 'Berhasil diperbaharui.');
