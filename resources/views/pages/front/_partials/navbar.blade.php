@@ -50,7 +50,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="programDropdown">
                         <a class="dropdown-item {{ Request::segment(2) == 'event' ? 'active' : '' }}" href="{{ url('event') }}">Event</a>
-                        <a class="dropdown-item {{ Request::segment(2) == 'portofolio' ? 'active' : '' }}" href="{{ url('portofolio') }}">Portofolio</a>
                         <a class="dropdown-item {{ Request::segment(2) == 'kegiatan' ? 'active' : '' }}" href="{{ url('informasi/kegiatan') }}">Dokumentasi</a>
                         <a class="dropdown-item {{ Request::segment(2) == 'karir' ? 'active' : '' }}" href="{{ url('informasi/karir') }}">Karir</a>
                         <a class="dropdown-item {{ Request::segment(2) == 'berita' ? 'active' : '' }}" href="{{ url('artikel') }}">Berita dan Promosi</a>

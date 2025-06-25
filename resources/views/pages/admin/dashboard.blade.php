@@ -166,7 +166,7 @@
 					
 				</div>
 
-				<div class="col-md-3 col-6">
+				{{-- <div class="col-md-3 col-6">
 					<a href="{{ url('manage-portofolio') }}">
 					<div class="card">
 						<div class="row no-gutters align-items-center">
@@ -183,7 +183,7 @@
 					</div>
 					</a>
 					
-				</div>
+				</div> --}}
 
 				<div class="col-md-3 col-6">
 					<a href="{{ url('manage-mitra') }}">

@@ -500,7 +500,7 @@
 </section>
 <!-- Faq end -->
 
-<section class="section bg-light" style="padding-top: 40px; padding-bottom: 40px;">
+{{-- <section class="section bg-light" style="padding-top: 40px; padding-bottom: 40px;">
 	<div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-lg-6">
@@ -587,7 +587,7 @@
     		</div>
     	</div>
 	</div>
-</section>
+</section> --}}
 
 @endsection
 

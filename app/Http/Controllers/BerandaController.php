@@ -110,6 +110,9 @@ class BerandaController extends Controller
         // Fetch sejarah data ordered by tahun ascending
         $dataview->sejarahs = \App\Models\Sejarah::orderBy('tahun', 'asc')->get();
 
+        // ✅ Tambahkan data Visi & Misi
+        $dataview->visi = \App\Models\VisiMisi::where('jenis', 'Visi')->orderBy('urutan')->get();
+        $dataview->misi = \App\Models\VisiMisi::where('jenis', 'Misi')->orderBy('urutan')->get();
         return view('pages/front/sejarah', compact('dataview'));
     }
 

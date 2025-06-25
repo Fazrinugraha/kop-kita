@@ -80,7 +80,7 @@ p {
     box-shadow: none;
     outline: none;
     text-decoration: none;
- background: #FFB800; 
+ background: #FFB800;
     border-color: #FFB800;
     color: #333333;
 }
@@ -206,7 +206,7 @@ p {
     margin-bottom: 0px;
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-  background-color: #247BA0; 
+  background-color: #247BA0;
 }
 
 .navbar-custom .logo .logo-light {
@@ -280,12 +280,12 @@ p {
         overflow: hidden;
         background-color: #ffffff;
     }
-    
+
     .about-image-wrapper {
         position: relative;
         padding-right: 30px;
     }
-    
+
     .image-frame {
         position: relative;
         border-radius: 20px;
@@ -295,14 +295,14 @@ p {
         transform: perspective(1000px) rotateY(-5deg);
         transition: all 0.5s ease;
     }
-    
+
     .about-img {
         width: 100%;
         height: auto;
         display: block;
         transition: transform 0.5s ease;
     }
-    
+
     .experience-badge {
         position: absolute;
         bottom: -20px;
@@ -315,24 +315,24 @@ p {
         text-align: center;
         z-index: 2;
     }
-    
+
     .years {
         display: block;
         font-size: 2.5rem;
         font-weight: 700;
         line-height: 1;
     }
-    
+
     .label {
         font-size: 0.9rem;
         font-weight: 500;
     }
-    
+
     /* Content Styling */
     .about-content {
         padding-left: 30px;
     }
-    
+
     .section-label {
         display: inline-block;
         background-color: rgba(36, 123, 160, 0.1);
@@ -345,7 +345,7 @@ p {
         text-transform: uppercase;
         letter-spacing: 1px;
     }
-    
+
     /* .title {
         font-size: 2.5rem;
         font-weight: 700;
@@ -353,12 +353,12 @@ p {
         color: #14213D;
         margin-bottom: 20px;
     } */
-    
+
     .text-highlight {
         color: #247BA0;
         position: relative;
     }
-    
+
     .text-highlight::after {
         content: '';
         position: absolute;
@@ -370,7 +370,7 @@ p {
         z-index: -1;
         transform: skewX(-15deg);
     }
-    
+
     .divider {
         width: 80px;
         height: 4px;
@@ -378,19 +378,19 @@ p {
         margin: 20px 0;
         border-radius: 4px;
     }
-    
+
     .about-text .lead {
         font-size: 1.1rem;
         line-height: 1.8;
         color: #4a5568;
         margin-bottom: 0;
     }
-    
+
     /* Features Styling */
     .about-features {
         margin-top: 30px;
     }
-    
+
     .feature-box {
         display: flex;
         align-items: center;
@@ -400,23 +400,23 @@ p {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
     }
-    
+
     .feature-box:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
-    
+
     .feature-icon {
         color: #FFB800;
         font-size: 1.2rem;
         margin-right: 10px;
     }
-    
+
     .feature-text {
         font-weight: 500;
         color: #2d3748;
     }
-    
+
     /* Button Styling */
     .btn {
         padding: 12px 25px;
@@ -426,104 +426,104 @@ p {
         position: relative;
         overflow: hidden;
     }
-    
+
     .btn-primary {
         background-color: #247BA0;
         border-color: #247BA0;
         box-shadow: 0 4px 15px rgba(36, 123, 160, 0.3);
     }
-    
+
     .btn-primary:hover {
         background-color: #1c5f7d;
         border-color: #1c5f7d;
         transform: translateY(-3px);
         box-shadow: 0 8px 25px rgba(36, 123, 160, 0.4);
     }
-    
+
     .btn-outline-primary {
         color: #247BA0;
         border-color: #247BA0;
     }
-    
+
     .btn-outline-primary:hover {
         background-color: #247BA0;
         color: white;
         transform: translateY(-3px);
         box-shadow: 0 8px 25px rgba(36, 123, 160, 0.4);
     }
-    
+
     /* Hover Effects */
     .image-frame:hover {
         transform: perspective(1000px) rotateY(0deg);
     }
-    
+
     .image-frame:hover .about-img {
         transform: scale(1.05);
     }
-    
+
     /* Responsive Design */
     @media (max-width: 1199.98px) {
         .title {
             font-size: 2.2rem;
         }
     }
-    
+
     @media (max-width: 991.98px) {
         .about-section {
             padding: 80px 0;
         }
-        
+
         .about-content {
             padding-left: 0;
             margin-top: 50px;
         }
-        
+
         .about-image-wrapper {
             padding-right: 0;
         }
-        
+
         .title {
             font-size: 2rem;
         }
     }
-    
+
     @media (max-width: 767.98px) {
         .about-section {
             padding: 60px 0;
         }
-        
+
         .title {
             font-size: 1.8rem;
         }
-        
+
         .about-text .lead {
             font-size: 1rem;
         }
-        
+
         .experience-badge {
             padding: 10px 20px;
         }
-        
+
         .years {
             font-size: 2rem;
         }
     }
-    
+
     @media (max-width: 575.98px) {
         .about-section {
             padding: 50px 0;
         }
-        
+
         .title {
             font-size: 1.6rem;
         }
-        
+
         .about-cta .btn {
             display: block;
             width: 100%;
             margin-bottom: 15px;
         }
-        
+
         .about-cta .btn:last-child {
             margin-bottom: 0;
         }
@@ -717,7 +717,7 @@ p {
         height: 140px;
         padding: 20px;
     }
-    
+
     .section-title {
         font-size: 2rem;
     }
@@ -727,13 +727,13 @@ p {
     .partner-logo-wrapper {
         height: 120px;
     }
-    
+
     /* Responsive untuk 3 kolom */
     .col-xl-4, .col-lg-4, .col-md-4 {
         flex: 0 0 100%;
         max-width: 100%;
     }
-    
+
     /* Untuk mobile, tampilkan 1 mitra per slide */
     #partnerCarousel .carousel-inner .row > div {
         flex: 0 0 100%;
@@ -925,17 +925,17 @@ p {
     }
 }
 /*# sourceMappingURL=style.css.map */
-/* 
-/* 
+/*
+/*
 ---------------------------------------------
 Contact Style
---------------------------------------------- 
+---------------------------------------------
 */
 
-/* 
+/*
 ---------------------------------------------
 Compact Contact Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .contact-us {
@@ -1049,7 +1049,7 @@ Compact Contact Style
   .contact-us .contact-us-content {
     padding: 15px;
   }
-  
+
   #contact-form {
     padding: 20px !important;
   }
@@ -1059,7 +1059,7 @@ Compact Contact Style
   #contact-form .section-heading h2 {
     font-size: 1.5rem;
   }
-  
+
   #map {
     margin-bottom: 20px;
   }
@@ -1069,20 +1069,20 @@ Compact Contact Style
   .contact-us {
     padding: 30px 0;
   }
-  
+
   #contact-form {
     padding: 15px !important;
   }
-  
+
   .contact-us-content .more-info .info-item {
     margin-bottom: 20px;
   }
-  
+
   #contact-form input,
   #contact-form textarea {
     font-size: 13px;
   }
-  
+
   .blue-yellow-button {
     font-size: 14px;
   }
@@ -1093,13 +1093,18 @@ Compact Contact Style
     flex: 0 0 100%;
     max-width: 100%;
   }
-  
+
   .contact-us-content .more-info .info-item {
     margin-bottom: 15px;
   }
-  
+
   #contact-form .section-heading h2 {
     font-size: 1.3rem;
+  }
+   .hero-wrapper .title {
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    line-height: 1.4;
   }
 }
 
@@ -1113,17 +1118,17 @@ Compact Contact Style
     margin: 2rem 0;
     max-height: 380px;
   }
-  
+
   #timelineContainer::-webkit-scrollbar {
     height: 8px;
     background-color: #f8f9fa;
   }
-  
+
   #timelineContainer::-webkit-scrollbar-thumb {
     background-color: #f4b400;
     border-radius: 4px;
   }
-  
+
   /* Timeline Event */
   .timeline-event {
     position: relative;
@@ -1139,30 +1144,30 @@ Compact Contact Style
     flex-direction: column;
     border: 1px solid #f0f0f0;
   }
-  
+
   .timeline-event.visible {
     opacity: 1;
     transform: translateY(0);
   }
-  
+
   .timeline-event:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(244, 180, 0, 0.3);
     z-index: 10;
   }
-  
+
   .timeline-content {
     display: flex;
     height: 100%;
   }
-  
+
   .timeline-icon {
     position: relative;
     flex-shrink: 0;
     width: 60px;
     margin-right: 1.2rem;
   }
-  
+
   .timeline-icon::before {
     content: "";
     position: absolute;
@@ -1173,7 +1178,7 @@ Compact Contact Style
     height: 100%;
     background: linear-gradient(to bottom, #f4b400, #ffcc33);
   }
-  
+
   .timeline-icon::after {
     content: "";
     position: absolute;
@@ -1187,7 +1192,7 @@ Compact Contact Style
     border: 4px solid #fff;
     box-shadow: 0 0 0 2px #f4b400;
   }
-  
+
   .timeline-year {
     position: relative;
     z-index: 2;
@@ -1201,13 +1206,13 @@ Compact Contact Style
     margin-top: 5px;
     box-shadow: 0 4px 6px rgba(244, 180, 0, 0.3);
   }
-  
+
   .timeline-details {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
-  
+
   .timeline-image {
     border-radius: 8px;
     overflow: hidden;
@@ -1217,23 +1222,23 @@ Compact Contact Style
     align-items: center;
     justify-content: center;
   }
-  
+
   .timeline-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
-  
+
   .timeline-event:hover .timeline-image img {
     transform: scale(1.05);
   }
-  
+
   .timeline-text {
     padding: 0.8rem 0;
     flex: 1;
   }
-  
+
   .timeline-text h5 {
     color: #1a365d;
     font-size: 1.2rem;
@@ -1241,7 +1246,7 @@ Compact Contact Style
     position: relative;
     padding-bottom: 0.5rem;
   }
-  
+
   .timeline-text h5::after {
     content: "";
     position: absolute;
@@ -1252,27 +1257,32 @@ Compact Contact Style
     background: #f4b400;
     border-radius: 2px;
   }
-  
+
   .timeline-text p {
     color: #4a5568;
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 0;
   }
-  
+
   /* Responsive */
   @media (max-width: 768px) {
     .timeline-event {
       flex: 0 0 280px;
     }
-    
+
     .timeline-icon {
       width: 50px;
     }
-    
+
     .timeline-image {
       max-height: 150px;
     }
+    .hero-wrapper .title {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    line-height: 1.4;
+  }
   }
 
 /*layanan  kop kita (simpanan, pinjaman , dan ukm*/
@@ -1282,7 +1292,7 @@ Compact Contact Style
         position: relative;
         padding-bottom: 15px;
     }
-    
+
     .title-border {
         width: 80px;
         height: 3px;
@@ -1293,12 +1303,12 @@ Compact Contact Style
         transform: translateY(-10px);
         transition: all 0.8s ease;
     }
-    
+
     .animate__fadeIn .title-border {
         opacity: 1;
         transform: translateY(0);
     }
-    
+
     /* Card Styling */
     .service-card {
         background-color: #fff;
@@ -1310,19 +1320,19 @@ Compact Contact Style
         opacity: 0;
         transform: translateY(20px);
     }
-    
+
     .service-card.animate__fadeInUp {
         opacity: 1;
         transform: translateY(0);
     }
-    
+
     .service-card:hover {
         transform: translateY(-10px) scale(1.02);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     }
-    
 
-    
+
+
     /* Icon Styling */
     .icon-wrapper {
         width: 70px;
@@ -1335,17 +1345,17 @@ Compact Contact Style
         transition: all 0.3s ease;
         flex-shrink: 0;
     }
-    
+
     .service-card:hover .icon-wrapper {
         transform: rotate(10deg) scale(1.1);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
-    
+
     .text-primary { color: #3b82f6 !important; }
     .text-success { color: #10b981 !important; }
     .text-warning { color: #f59e0b !important; }
     .text-info { color: #06b6d4 !important; }
-    
+
     /* Custom Icon */
     .custom-icon {
         display: flex;
@@ -1354,12 +1364,12 @@ Compact Contact Style
         width: 40px;
         height: 40px;
     }
-    
+
     .custom-icon svg {
         width: 100%;
         height: 100%;
     }
-    
+
     /* Text Styling */
     .service-title {
         font-weight: 700;
@@ -1367,17 +1377,17 @@ Compact Contact Style
         font-size: 1.2rem;
         transition: color 0.3s ease;
     }
-    
+
     .service-card:hover .service-title {
         color: #3b82f6;
     }
-    
+
     .service-desc {
         font-size: 0.95rem;
         line-height: 1.6;
         color: #64748b;
     }
-    
+
     /* Button Styling */
     .btn-hover-scale {
         transition: all 0.3s ease;
@@ -1385,63 +1395,63 @@ Compact Contact Style
         position: relative;
         overflow: hidden;
     }
-    
+
     .btn-hover-scale:hover {
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
-    
+
     .btn-hover-scale .transition-all {
         transition: all 0.3s ease;
     }
-    
+
     .btn-hover-scale:hover .transition-all {
         transform: translateX(3px);
     }
-    
+
     .btn-outline-primary {
         border-color: #3b82f6;
         color: #3b82f6;
     }
-    
+
     .btn-outline-success {
         border-color: #10b981;
         color: #10b981;
     }
-    
+
     .btn-outline-warning {
         border-color: #f59e0b;
         color: #f59e0b;
     }
-    
+
     /* Animation Delay */
     [data-animation-delay] {
         animation-delay: calc(var(--animation-delay, 0s) + attr(data-animation-delay) * 1s);
     }
-    
+
     /* Responsive Design */
     @media (max-width: 992px) {
         .service-card {
             margin-bottom: 20px;
         }
-        
+
         .icon-wrapper {
             width: 60px;
             height: 60px;
         }
     }
-    
+
     @media (max-width: 768px) {
         .col-md-6 {
             flex: 0 0 100%;
             max-width: 100%;
         }
-        
+
         .service-card {
             flex-direction: row;
             align-items: center;
         }
-        
+
         .icon-wrapper {
             width: 50px;
             height: 50px;
@@ -1451,7 +1461,7 @@ Compact Contact Style
 
 
 /*---------------------------------------
-  FAQs              
+  FAQs
 -----------------------------------------*/
 .faq-section .accordion-item {
   border: 0;
@@ -1476,4 +1486,136 @@ Compact Contact Style
   color: var(--p-color);
   font-size: var(--btn-font-size);
   line-height: 40px;
+}
+/* karir */
+.karir-detail-wrapper h3.card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #247BA0;
+}
+
+.karir-detail-wrapper ul li {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    color: #4a4a4a;
+}
+
+.karir-detail-wrapper h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #1a365d;
+}
+
+.karir-detail-wrapper p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.karir-detail-wrapper a.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  /* Hero Section */
+  .hero-wrapper .title {
+    font-size: 0.8rem !important;
+    font-weight: 500;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  /* Slider */
+  #carouselExample .carousel-inner img {
+    height: auto;
+    max-height: 220px;
+    object-fit: cover;
+  }
+
+  /* Tentang Kami */
+  .about-section .title {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .about-section .lead {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+
+  .about-cta {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .about-cta .btn {
+    width: 100%;
+  }
+
+  /* Produk Kami */
+  .service-card .media {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .service-card .media .me-4 {
+    margin-right: 0 !important;
+    margin-bottom: 10px;
+  }
+
+  .service-card .btn {
+    width: 100%;
+  }
+
+  /* Artikel */
+  .card .card-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .cover-berita {
+    height: 160px;
+    object-fit: cover;
+  }
+
+  /* Event */
+  .list-group-item {
+    font-size: 0.85rem;
+  }
+
+  /* Portofolio */
+  .card .card-body {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .card .card-body h5 {
+    font-size: 1rem;
+  }
+
+  .card .card-body h6 {
+    font-size: 0.85rem;
+  }
+
+  .card .card-body small {
+    font-size: 0.75rem;
+  }
+
+  /* Umum */
+  .btn {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
 }

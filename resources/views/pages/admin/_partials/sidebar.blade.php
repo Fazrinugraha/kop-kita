@@ -65,7 +65,7 @@
                     </a>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="{{ url('manage-jasa') }}">
                         <i class="mdi mdi-format-list-bulleted-square"></i>
                         <span> Bidang Layanan </span>
@@ -77,14 +77,14 @@
                         <i class="mdi mdi-account-card-details"></i>
                         <span> Portofolio </span>
                     </a>
-                </li>
+                </li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="{{ url('manage-kegiatan') }}">
                         <i class="mdi mdi-run-fast"></i>
                         <span> Kegiatan </span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li>
                     <a href="{{ url('manage-mitra') }}">
@@ -106,13 +106,13 @@
                         <span> Blog / Artikel </span>
                     </a>
                 </li>
-
+{{-- 
                 <li>
                     <a href="{{ url('manage-pengabdian') }}">
                         <i class="mdi mdi-home-group"></i>
                         <span> Pengabdian </span>
                     </a>
-                </li>
+                </li> --}}
                 
                 <li>
                     <a href="{{ url('manage-kontak') }}">

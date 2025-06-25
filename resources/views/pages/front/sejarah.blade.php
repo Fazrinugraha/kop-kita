@@ -80,22 +80,26 @@
         </div>
       </div>
       <!-- Kolom Kanan: Sidebar -->
-      <div class="col-lg-4">
-        <div class="p-4 shadow-lg rounded-4 mb-4" style="background: linear-gradient(to bottom right, #ffffff, #e7f5ff);">
-          <h4 class="fw-bold text-primary mb-3">Visi</h4>
-          <p class="text-dark">"Mewujudkan Lembaga Inovatif dan Progresif dalam Pemberdayaan Masyarakat dan Pendidikan di Kabupaten Bengkalis."</p>
-        </div>
+     <!-- Kolom Kanan: Sidebar -->
+    <div class="col-lg-4">
+      <!-- VISI -->
+      <div class="p-4 shadow-lg rounded-4 mb-4" style="background: linear-gradient(to bottom right, #ffffff, #e7f5ff);">
+        <h4 class="fw-bold text-primary mb-3">Visi</h4>
+        @foreach($dataview->visi as $visi)
+          <p class="text-dark">"{{ $visi->isi }}"</p>
+        @endforeach
+      </div>
 
-        <div class="p-4 shadow-lg rounded-4 mb-4" style="background: linear-gradient(to bottom right, #ffffff, #e2ffe4);">
-          <h4 class="fw-bold text-primary mb-3">Misi</h4>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">1. Menyelenggarakan program edukatif dan sosial yang berkelanjutan.</li>
-            <li class="list-group-item">2. Mengembangkan potensi lokal melalui pelatihan dan pendampingan.</li>
-            <li class="list-group-item">3. Meningkatkan literasi digital dan pendidikan karakter masyarakat.</li>
-            <li class="list-group-item">4. Membangun kemitraan strategis dengan institusi pemerintah dan swasta.</li>
-            <li class="list-group-item">5. Mendorong inovasi dan kreativitas generasi muda dalam pembangunan daerah.</li>
-          </ul>
-        </div>
+      <!-- MISI -->
+      <div class="p-4 shadow-lg rounded-4 mb-4" style="background: linear-gradient(to bottom right, #ffffff, #e2ffe4);">
+        <h4 class="fw-bold text-primary mb-3">Misi</h4>
+        <ul class="list-group list-group-flush">
+          @foreach($dataview->misi as $index => $misi)
+            <li class="list-group-item">{{ $index + 1 }}. {{ $misi->isi }}</li>
+          @endforeach
+        </ul>
+      </div>
+    
 
         <div class="p-4 shadow-lg rounded-4" style="background: linear-gradient(to bottom right, #ffffff, #ffe9ec);">
           <h5 class="card-title text-danger">Informasi Singkat</h5>
