@@ -3,7 +3,7 @@
 @push('head')
     <!-- Table datatable css -->
     <link href="{{ asset('themes/back/') }}/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        
+
     <link href="{{ asset('themes/back/') }}/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('themes/back/') }}/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('themes/back/') }}/libs/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -26,12 +26,12 @@
                 <h4 class="page-title">{{ $dataview->page_title }}</h4>
             </div>
         </div>
-    </div>     
-    <!-- end page title --> 
+    </div>
+    <!-- end page title -->
 
     <div class="row">
         <div class="col-12 mb-4">
-            
+
             @if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -44,7 +44,7 @@
                     </ul>
                 </div>
             @endif
-            
+
             <div class="btn btn-primary float-right" data-toggle="modal" data-target=".form-tambah">
                 <span class="btn-label"><i class="mdi mdi-plus"></i>
                 </span>Tambah Data
@@ -58,7 +58,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         </div>
                         <div class="modal-body">
-                            
+
                             <div class="scard-box">
 
                                 <div class="row">
@@ -89,25 +89,35 @@
                                                     <option value="T">Non-Aktif</option>
                                                 </select>
                                             </div>
+                                            <div class="form-group">
+                                                <label>Kategori</label>
+                                                <select class="form-control" name="kategori" required>
+                                                    <option value="">-- Pilih Kategori --</option>
+                                                    <option value="pengurus">Dewan Pengurus</option>
+                                                    <option value="pengawas">Dewan Pengawas</option>
+                                                </select>
+                                            </div>
+
+
                                             <button type="submit" class="btn btn-primary">Simpan</button>
                                         </form>
                                     </div><!-- end col -->
 
                                 </div><!-- end row -->
                             </div>
-                            
+
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div>
-            
+
         </div>
     </div>
-                        
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
-                
+
                 <div class="table-responsive">
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
@@ -116,6 +126,7 @@
                             <th>Foto</th>
                             <th>Nama</th>
                             <th>Jabatan</th>
+                            <th>Kategori</th>
                             <th>Tentang Saya</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -133,7 +144,8 @@
                                 </td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->bidang }}</td>
-                                 <td>{{ $item->tentang_saya }}</td> 
+                                <td>{{ ucfirst($item->kategori) }}</td>
+                                 <td>{{ $item->tentang_saya }}</td>
                                 <td>
                                     @if($item->status_aktif=='Y')
                                     <span class="badge badge-success badge-pill">Aktif</span>
@@ -159,9 +171,9 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                         </div>
                                         <div class="modal-body">
-                                            
+
                                             <div class="scard-box">
-                
+
                                                 <div class="row">
                                                     <div class="col-xl-12">
                                                         <form action="{{ route('update.team', $item->id_team) }}" method="POST" enctype="multipart/form-data">
@@ -183,6 +195,12 @@
                                                                 <label>Jabatan</label>
                                                                 <input type="text" class="form-control" name="bidang" placeholder="Bidang Kualifikasi" value="{{ $item->bidang }}">
                                                             </div>
+                                                            <select class="form-control" name="kategori" required>
+                                                                <option value="">-- Pilih Kategori --</option>
+                                                                <option value="pengurus" {{ $item->kategori == 'pengurus' ? 'selected' : '' }}>Dewan Pengurus</option>
+                                                                <option value="pengawas" {{ $item->kategori == 'pengawas' ? 'selected' : '' }}>Dewan Pengawas</option>
+                                                            </select>
+
                                                             <div class="form-group">
                                                                 <label>Tentang Saya</label>
                                                                 <textarea class="form-control" name="tentang_saya" placeholder="Tentang Saya">{{ $item->tentang_saya }}</textarea>
@@ -194,13 +212,15 @@
                                                                     <option value="T" {{ $item->status_aktif=='T' ? 'selected' : '' }}>Non-Aktif</option>
                                                                 </select>
                                                             </div>
+
+
                                                             <button type="submit" class="btn btn-primary">Simpan</button>
                                                         </form>
                                                     </div><!-- end col -->
-                
+
                                                 </div><!-- end row -->
                                             </div>
-                                            
+
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
@@ -214,9 +234,9 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                         </div>
                                         <div class="modal-body">
-                                            
+
                                             <div class="scard-box">
-                
+
                                                 <div class="row">
                                                     <div class="col-xl-12">
                                                         <form action="{{ route('delete.team', $item->id_team) }}" method="POST" enctype="multipart/form-data">
@@ -228,15 +248,15 @@
                                                             <p>
                                                                 <b>Apakah anda ingin menghapus data ini?</b>
                                                             </p>
-                                                            
+
                                                             <button type="submit" class="btn btn-danger">Hapus</button>
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                                         </form>
                                                     </div><!-- end col -->
-                
+
                                                 </div><!-- end row -->
                                             </div>
-                                            
+
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
@@ -247,16 +267,16 @@
                                 <th colspan="5" class="text-center">Tidak ada data</th>
                             </tr>
                             @endforelse
-                        
+
                         </tbody>
                     </table>
                 </div>
             </div>
 
         </div>
-        
+
     </div>
-    
+
 </div>
 @endsection
 

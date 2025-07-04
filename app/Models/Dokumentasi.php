@@ -17,9 +17,15 @@ class Dokumentasi extends Model
         'deskripsi',
     ];
 
-    // Relasi ke media
-    public function media()
+    // Relasi baru ke tabel foto
+    public function foto()
     {
-        return $this->hasMany(DokumentasiMedia::class, 'dokumentasi_id');
+        return $this->hasMany(DokumentasiFoto::class, 'dokumentasi_id');
+    }
+
+    // Relasi baru ke tabel video
+    public function video()
+    {
+        return $this->hasMany(DokumentasiVideo::class, 'dokumentasi_id');
     }
 }

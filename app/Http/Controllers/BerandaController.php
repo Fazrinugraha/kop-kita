@@ -12,14 +12,17 @@ use App\Models\Team;
 use App\Models\Mitra;
 use App\Models\Artikel;
 use App\Models\Event;
-use App\Models\Portofolio;
-use App\Models\Kegiatan;
-use App\Models\Pengabdian;
 use App\Models\Sejarah;
 use App\Models\VisiMisi;
 use App\Models\Regulasi;
 use App\Models\Manfaat;
 use App\Models\Dokumentasi;
+use App\Models\DokumentasiFoto;
+use App\Models\DokumentasiVideo;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
+
 
 class BerandaController extends Controller
 {
@@ -31,21 +34,50 @@ class BerandaController extends Controller
     public function index()
     {
         $dataview = new \stdClass();
-        $dataview->title = getTitle();
+        $dataview->title = 'Beranda | ' . getTitle();
 
+        // Slider & Tentang
         $dataview->slider = Slider::where('status_aktif', 'Y')->orderBy('id_slider', 'DESC')->limit(3)->get();
         $dataview->tentang = Tentang::where('prefix', 'tentang')->first();
+
+        // Layanan, Struktur Organisasi, Mitra
         $dataview->layanan = Layanan::all();
-        $dataview->team = Team::where('status_aktif', 'Y')->get();
+        $dataview->pengawas = Team::where('status_aktif', 'Y')->where('kategori', 'pengawas')->get();
+        $dataview->pengurus = Team::where('status_aktif', 'Y')->where('kategori', 'pengurus')->get();
         $dataview->mitra = Mitra::all();
+
+        // Artikel, Event, Portofolio
         $dataview->artikel_terbaru = Artikel::limit(3)->orderBy('tanggal', 'DESC')->get();
         $dataview->event_terkini = Event::first();
-        $dataview->portofolio = Portofolio::join('profil_kop_jasa', 'profil_kop_jasa.id_jasa', '=', 'profil_kop_portofolio.id_jasa')->orderBy('profil_kop_portofolio.created_at', 'DESC')->limit(8)->get();
+
+        // Regulasi & Manfaat
         $dataview->regulasi = Regulasi::all();
         $dataview->manfaat = Manfaat::orderBy('id_manfaat', 'DESC')->get();
 
-        return view('pages/front/beranda', compact('dataview'));
+        // Dokumentasi: Ringkasan (untuk bagian bawah / preview)
+        $dataview->foto = Dokumentasi::whereHas('foto')
+            ->with(['foto' => function ($q) {
+                $q->limit(1);
+            }])
+            ->orderBy('tanggal', 'DESC')
+            ->limit(4)
+            ->get();
+
+        $dataview->video = Dokumentasi::whereHas('video')
+            ->with(['video' => function ($q) {
+                $q->where('is_preview', 'Y');
+            }])
+            ->orderBy('tanggal', 'DESC')
+            ->limit(4)
+            ->get();
+
+        // Dokumentasi: List mentah (untuk carousel galeri)
+        $dataview->fotoList = DokumentasiFoto::with('dokumentasi')->latest()->limit(10)->get();
+        $dataview->videoList = DokumentasiVideo::with('dokumentasi')->latest()->limit(10)->get();
+
+        return view('pages.front.beranda', compact('dataview'));
     }
+
 
     public function faq()
     {
@@ -67,7 +99,8 @@ class BerandaController extends Controller
 
         // Fetch all manfaat data
         $dataview->manfaat = \App\Models\Manfaat::orderBy('id_manfaat', 'DESC')->get();
-
+        $dataview->visi = \App\Models\VisiMisi::where('jenis', 'Visi')->orderBy('urutan')->get();
+        $dataview->misi = \App\Models\VisiMisi::where('jenis', 'Misi')->orderBy('urutan')->get();
         return view('pages/front/manfaat', compact('dataview'));
     }
 
@@ -199,54 +232,100 @@ class BerandaController extends Controller
         return view('pages/front/detail_event', compact('dataview'));
     }
 
-    public function portofolio()
-    {
-        $dataview = new \stdClass();
-        $dataview->title = 'Portofolio ' . getTitle();
-        $dataview->portofolio = Portofolio::join('profil_kop_jasa', 'jasa.id_jasa', '=', 'portofolio.id_jasa')->get();
-        return view('pages/front/portofolio', compact('dataview'));
-    }
+    // public function portofolio()
+    // {
+    //     $dataview = new \stdClass();
+    //     $dataview->title = 'Portofolio ' . getTitle();
+    //     $dataview->portofolio = Portofolio::join('profil_kop_jasa', 'jasa.id_jasa', '=', 'portofolio.id_jasa')->get();
+    //     return view('pages/front/portofolio', compact('dataview'));
+    // }
 
-    public function portofolio_detail($id)
-    {
+    // public function portofolio_detail($id)
+    // {
 
-        $dataview = new \stdClass();
+    //     $dataview = new \stdClass();
 
-        $portofolio = Portofolio::join('jasa', 'jasa.id_jasa', '=', 'portofolio.id_jasa')->find($id);
-        // Jika konten tidak ditemukan, arahkan ke halaman 404
-        if (!$portofolio) {
-            abort(404);
-        }
+    //     $portofolio = Portofolio::join('jasa', 'jasa.id_jasa', '=', 'portofolio.id_jasa')->find($id);
 
-        // Cek apakah konten sudah pernah dilihat di sesi ini
-        $viewedPortotfolios = session()->get('viewed_portofolios', []);
-
-        if (!in_array($id, $viewedPortotfolios)) {
-            // Tambahkan ID ke session
-            session()->push('viewed_portofolios', $id);
-
-            // Tambahkan jumlah view di konten
-            $portofolio->view += 1;
-            $portofolio->save();
-        }
+    //     if (!$portofolio) {
+    //         abort(404);
+    //     }
 
 
-        $dataview->title = 'Portofolio | ' . $portofolio->nama_produk;
-        $dataview->portofolio = $portofolio;
-        // layanan
-        $dataview->layanan = Layanan::all();
-        return view('pages/front/detail_portofolio', compact('dataview'));
-    }
+    //     $viewedPortotfolios = session()->get('viewed_portofolios', []);
 
-    public function artikel()
+    //     if (!in_array($id, $viewedPortotfolios)) {
+
+    //         session()->push('viewed_portofolios', $id);
+
+
+    //         $portofolio->view += 1;
+    //         $portofolio->save();
+    //     }
+
+
+    //     $dataview->title = 'Portofolio | ' . $portofolio->nama_produk;
+    //     $dataview->portofolio = $portofolio;
+
+    //     $dataview->layanan = Layanan::all();
+    //     return view('pages/front/detail_portofolio', compact('dataview'));
+    // }
+
+    public function artikel(Request $request)
     {
         $dataview = new \stdClass();
         $dataview->title = 'Artikel ' . getTitle();
 
-        $dataview->artikel = Artikel::orderBy('tanggal', 'DESC')->get();
-        // layanan
+        // Get services for sidebar
         $dataview->layanan = Layanan::all();
+
+        // Base query
+        $query = Artikel::query();
+
+        // Apply search filter if present
+        if ($request->has('cari') && !empty($request->cari)) {
+            $this->searchArtikel($query, $request->cari);
+        }
+
+        // Apply date filter if present
+        if ($request->filled('tanggal_mulai') || $request->filled('tanggal_selesai')) {
+            try {
+                $startDate = $request->tanggal_mulai ?: '1970-01-01';
+                $endDate = $request->tanggal_selesai ?: now()->format('Y-m-d');
+                $this->filterArtikelByDate($query, $startDate, $endDate);
+            } catch (\Exception $e) {
+                return redirect()->route('artikel')->with('error', 'Format tanggal tidak valid');
+            }
+        }
+
+        // Order and paginate results
+        $dataview->artikel = $query->orderBy('tanggal', 'DESC')
+            ->paginate(5)
+            ->appends($request->except('page'));
+
         return view('pages/front/artikel', compact('dataview'));
+    }
+
+    private function searchArtikel($query, $searchTerm)
+    {
+        $query->where(function ($q) use ($searchTerm) {
+            $q->where('judul', 'like', '%' . $searchTerm . '%')
+                ->orWhere('isi', 'like', '%' . $searchTerm . '%');
+        });
+    }
+
+    private function filterArtikelByDate($query, $startDate, $endDate)
+    {
+        $startDate = Carbon::parse($startDate)->startOfDay();
+        $endDate = Carbon::parse($endDate)->endOfDay();
+
+        // Ensure start date is before end date
+        if ($startDate->gt($endDate)) {
+            // Swap dates if they're in wrong order
+            [$startDate, $endDate] = [$endDate, $startDate];
+        }
+
+        $query->whereBetween('tanggal', [$startDate, $endDate]);
     }
 
     public function artikel_detail($id)
@@ -391,6 +470,8 @@ class BerandaController extends Controller
 
         $dataview->title = 'Karir | ' . $karir->judul_posisi;
         $dataview->karir = $karir;
+        $dataview->layanan = \App\Models\Layanan::all();
+
         return view('pages/front/detail_karir', compact('dataview'));
     }
     public function dokumentasi(Request $request)
@@ -399,14 +480,14 @@ class BerandaController extends Controller
         $dataview = new \stdClass();
         $dataview->title = 'Dokumentasi | ' . getTitle();
 
-        // Ambil semua dokumentasi dengan media terkait
-        $query = Dokumentasi::with(['media' => function ($q) use ($tipe) {
-            if ($tipe === 'foto' || $tipe === 'video') {
-                $q->where('jenis_media', $tipe);
-            }
-        }])->orderBy('tanggal', 'DESC');
+        if ($tipe === 'foto') {
+            $dataview->dokumentasi = Dokumentasi::with('foto')->whereHas('foto')->orderBy('tanggal', 'DESC')->get();
+        } elseif ($tipe === 'video') {
+            $dataview->dokumentasi = Dokumentasi::with('video')->whereHas('video')->orderBy('tanggal', 'DESC')->get();
+        } else {
+            $dataview->dokumentasi = Dokumentasi::with(['foto', 'video'])->orderBy('tanggal', 'DESC')->get();
+        }
 
-        $dataview->dokumentasi = $query->get();
         $dataview->tipe = $tipe;
 
         return view('pages/front/dokumentasi', compact('dataview'));

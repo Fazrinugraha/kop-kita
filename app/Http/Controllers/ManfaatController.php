@@ -24,7 +24,7 @@ class ManfaatController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'img' => 'nullable|image|mimes:jpeg,jpg,png,svg|max:2048',
+            'img' => 'nullable|image|mimes:jpeg,jpg,png,svg|max:5048',
         ]);
 
         $manfaat = new Manfaat();
@@ -56,7 +56,7 @@ class ManfaatController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'img' => 'nullable|image|mimes:jpeg,jpg,png,svg|max:2048',
+            'img' => 'nullable|image|mimes:jpeg,jpg,png,svg|max:5048',
         ]);
 
         $manfaat = Manfaat::find($id_manfaat);

@@ -42,12 +42,6 @@
                     <option value="Misi" {{ old('jenis') == 'Misi' ? 'selected' : '' }}>Misi</option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label for="judul">Judul</label>
-                <input type="text" class="form-control" name="judul" value="{{ old('judul') }}" required>
-            </div>
-
             <div class="form-group">
                 <label for="isi">Isi</label>
                 <textarea class="form-control" name="isi" rows="4" required>{{ old('isi') }}</textarea>

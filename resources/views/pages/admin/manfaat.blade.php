@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <label>Gambar</label>
                                     <input type="file" class="form-control" accept="image/png, image/jpeg" name="img">
-                                    <small class="text-muted">Ukuran file tidak lebih dari 2MB</small>
+                                    <small class="text-muted">Ukuran file tidak lebih dari 5MB</small>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </form>
@@ -147,7 +147,7 @@
                                                     @if($item->img)
                                                         <img src="{{ asset($item->img) }}" height="100" class="mt-2">
                                                     @endif
-                                                    <small class="text-muted">Ukuran file tidak lebih dari 2MB</small>
+                                                    <small class="text-muted">Ukuran file tidak lebih dari 5MB</small>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Simpan</button>
                                             </form>

@@ -46,12 +46,6 @@
                     <option value="Misi" {{ old('jenis', $visiMisi->jenis) == 'Misi' ? 'selected' : '' }}>Misi</option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label for="judul">Judul</label>
-                <input type="text" class="form-control" name="judul" value="{{ old('judul', $visiMisi->judul) }}" required>
-            </div>
-
             <div class="form-group">
                 <label for="isi">Isi</label>
                 <textarea class="form-control" name="isi" rows="4" required>{{ old('isi', $visiMisi->isi) }}</textarea>
@@ -75,7 +69,6 @@
             <thead>
                 <tr>
                     <th>Jenis</th>
-                    <th>Judul</th>
                     <th>Isi</th>
                     <th>Urutan</th>
                     <th>Aksi</th>
@@ -85,7 +78,6 @@
                 @foreach ($visiMisis as $item)
                 <tr>
                     <td>{{ $item->jenis }}</td>
-                    <td>{{ $item->judul }}</td>
                     <td>{!! Str::limit(strip_tags($item->isi), 100) !!}</td>
                     <td>{{ $item->urutan }}</td>
                     <td>

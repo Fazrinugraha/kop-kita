@@ -146,45 +146,7 @@
 					</a>
 					
 				</div>
-
-				<div class="col-md-3 col-6">
-					<a href="{{ url('manage-jasa') }}">
-					<div class="card">
-						<div class="row no-gutters align-items-center">
-							<div class="col-md-5 text-center">
-							<i class="mdi mdi-format-list-bulleted-square" style="font-size: 40px;"></i>
-							</div>
-							<div class="col-md-7">
-								<div class="card-body py-2">
-									<h5 class="card-title">Bidang Jasa</h5>
-									<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_jasa) }}</h2>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-					
-				</div>
-
-				{{-- <div class="col-md-3 col-6">
-					<a href="{{ url('manage-portofolio') }}">
-					<div class="card">
-						<div class="row no-gutters align-items-center">
-							<div class="col-md-5 text-center">
-							<i class="mdi mdi-account-card-details" style="font-size: 40px;"></i>
-							</div>
-							<div class="col-md-7">
-								<div class="card-body py-2">
-									<h5 class="card-title">Portofolio</h5>
-									<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_portofolio) }}</h2>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-					
-				</div> --}}
-
+				
 				<div class="col-md-3 col-6">
 					<a href="{{ url('manage-mitra') }}">
 					<div class="card">
@@ -224,23 +186,185 @@
 				</div>
 
 				<div class="col-md-3 col-6">
-					<a href="{{ url('manage-pengabdian') }}">
-					<div class="card">
-						<div class="row no-gutters align-items-center">
-							<div class="col-md-5 text-center">
-							<i class="mdi mdi-home-group" style="font-size: 40px;"></i>
-							</div>
-							<div class="col-md-7">
-								<div class="card-body py-2">
-									<h5 class="card-title">Pengabdian</h5>
-									<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_pengabdian) }}</h2>
+					<a href="{{ url('visi-misi') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-eye" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Visi Misi</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_visimisi) }}</h2>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</a>
-					
 				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('sejarah') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-book-open-variant" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Sejarah</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_sejarah) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('manage-event') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-calendar-multiselect" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Event</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_event) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('manage-karir') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-briefcase" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Karir</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_karir) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('manage-regulasi') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-file-document" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Regulasi</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_regulasi) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('manage-faq') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-comment-question-outline" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">FAQ</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_faq) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('manage-dokumentasi') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-camera-image" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Dokumentasi</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_dokumentasi) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('manage-kontak') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-phone" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Kontak</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_kontak) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('admin/contact-messages') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-email" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Pesan Kontak</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_pesan) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<a href="{{ url('manage-manfaat') }}">
+						<div class="card">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-5 text-center">
+								<i class="mdi mdi-star-outline" style="font-size: 40px;"></i>
+								</div>
+								<div class="col-md-7">
+									<div class="card-body py-2">
+										<h5 class="card-title">Manfaat</h5>
+										<h2 class="mt-0 pt-2">{{ number_format($dataview->jum_manfaat) }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
 				
 			</div>
 			

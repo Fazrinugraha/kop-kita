@@ -36,22 +36,22 @@
                     </p>
                 </div>
             </div>
-            
+
             <h2 class="fw-bold text-primary mb-3">Dewan Pengawas</h2>
             <div class="row justify-content-center">
-                @foreach ($dataview->team as $item)
+                @foreach ($dataview->team->where('kategori', 'pengawas') as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="team-card card border-0 shadow-sm h-100">
                         <div class="card-body text-center p-4">
                             <div class="team-img mx-auto mb-4" data-bs-toggle="modal" data-bs-target="#teamModal{{ $loop->index }}" style="cursor: pointer;">
-                                <img src="{{ asset($item->file_foto) }}" 
-                                     class="img-fluid rounded-circle shadow" 
+                                <img src="{{ asset($item->file_foto) }}"
+                                     class="img-fluid rounded-circle shadow"
                                      alt="{{ $item->nama }}"
                                      style="width: 150px; height: 150px; object-fit: cover;">
                             </div>
                             <h5 class="fw-bold mb-1">{{ $item->nama }}</h5>
                             <p class="text-muted mb-3">{{ $item->bidang }}</p>
-                            
+
                             <!-- Social Links -->
                             <div class="social-links d-flex justify-content-center gap-2">
                                 @if($item->linkedin)
@@ -79,8 +79,8 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
-                                        <img src="{{ asset($item->file_foto) }}" 
-                                             class="img-fluid rounded-circle shadow mb-3" 
+                                        <img src="{{ asset($item->file_foto) }}"
+                                             class="img-fluid rounded-circle shadow mb-3"
                                              alt="{{ $item->nama }}"
                                              style="width: 200px; height: 200px; object-fit: cover;">
                                         <h4 class="fw-bold">{{ $item->nama }}</h4>
@@ -100,7 +100,7 @@
                                     <div class="col-md-8">
                                         <h5 class="fw-bold border-bottom pb-2 mb-3">Tentang Saya</h5>
                                        <p>{{ $item->tentang_saya ?? 'Deskripsi anggota tim akan ditampilkan di sini.' }}</p>
-                                        
+
                                         {{-- <h5 class="fw-bold border-bottom pb-2 mb-3 mt-4">Pengalaman</h5>
                                         <ul class="list-unstyled">
                                             @if($item->pengalaman)
@@ -111,7 +111,7 @@
                                                 <li>Pengalaman profesional akan ditampilkan di sini.</li>
                                             @endif
                                         </ul>
-                                        
+
                                         <h5 class="fw-bold border-bottom pb-2 mb-3 mt-4">Pendidikan</h5>
                                         <p>{{ $item->pendidikan ?? 'Riwayat pendidikan akan ditampilkan di sini.' }}</p> --}}
                                     </div>
@@ -125,22 +125,22 @@
                 </div>
                 @endforeach
             </div>
-            
+
             <h2 class="fw-bold text-primary mb-3 mt-5">Dewan Pengurus</h2>
             <div class="row justify-content-center">
-                @foreach ($dataview->team as $item)
+                @foreach ($dataview->team->where('kategori', 'pengurus') as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="team-card card border-0 shadow-sm h-100">
                         <div class="card-body text-center p-4">
                             <div class="team-img mx-auto mb-4" data-bs-toggle="modal" data-bs-target="#teamModal{{ $loop->index + count($dataview->team) }}" style="cursor: pointer;">
-                                <img src="{{ asset($item->file_foto) }}" 
-                                     class="img-fluid rounded-circle shadow" 
+                                <img src="{{ asset($item->file_foto) }}"
+                                     class="img-fluid rounded-circle shadow"
                                      alt="{{ $item->nama }}"
                                      style="width: 150px; height: 150px; object-fit: cover;">
                             </div>
                             <h5 class="fw-bold mb-1">{{ $item->nama }}</h5>
                             <p class="text-muted mb-3">{{ $item->bidang }}</p>
-                            
+
                             <!-- Social Links -->
                             <div class="social-links d-flex justify-content-center gap-2">
                                 @if($item->linkedin)
@@ -168,13 +168,13 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
-                                        <img src="{{ asset($item->file_foto) }}" 
-                                             class="img-fluid rounded-circle shadow mb-3" 
+                                        <img src="{{ asset($item->file_foto) }}"
+                                             class="img-fluid rounded-circle shadow mb-3"
                                              alt="{{ $item->nama }}"
                                              style="width: 200px; height: 200px; object-fit: cover;">
                                         <h4 class="fw-bold">{{ $item->nama }}</h4>
                                         <p class="text-muted">{{ $item->bidang }}</p>
-                                        
+
                                         {{-- <div class="social-links d-flex justify-content-center gap-3 mb-3">
                                             @if($item->linkedin)
                                             <a href="{{ $item->linkedin }}" class="text-primary" target="_blank"><i class="mdi mdi-linkedin fs-4"></i></a>
@@ -190,7 +190,7 @@
                                     <div class="col-md-8">
                                         <h5 class="fw-bold border-bottom pb-2 mb-3">Tentang Saya</h5>
                                         <p>{{ $item->tentang_saya ?? 'Deskripsi anggota tim akan ditampilkan di sini.' }}</p>
-                                        
+
                                         {{-- <h5 class="fw-bold border-bottom pb-2 mb-3 mt-4">Pengalaman</h5>
                                         <ul class="list-unstyled">
                                             @if($item->pengalaman)
@@ -201,7 +201,7 @@
                                                 <li>Pengalaman profesional akan ditampilkan di sini.</li>
                                             @endif
                                         </ul>
-                                        
+
                                         <h5 class="fw-bold border-bottom pb-2 mb-3 mt-4">Pendidikan</h5>
                                         <p>{{ $item->pendidikan ?? 'Riwayat pendidikan akan ditampilkan di sini.' }}</p> --}}
                                     </div>
@@ -240,7 +240,7 @@
     .team-img:hover {
         transform: scale(1.05);
     }
-    
+
     /* Modal styling */
     .modal-content {
         border-radius: 15px;
@@ -256,7 +256,7 @@
         color: #0d6efd;
         font-weight: 600;
     }
-    
+
     /* Social links animation */
     .social-links a {
         transition: transform 0.3s ease, color 0.3s ease;
@@ -273,15 +273,15 @@
     // Optional: Add animation when modal shows
     document.addEventListener('DOMContentLoaded', function() {
         var teamModals = document.querySelectorAll('.team-img');
-        
+
         teamModals.forEach(function(trigger) {
             trigger.addEventListener('click', function() {
                 var modalId = this.getAttribute('data-bs-target');
                 var modal = document.querySelector(modalId);
-                
+
                 // Add animation class
                 modal.querySelector('.modal-content').classList.add('animate__animated', 'animate__fadeInUp');
-                
+
                 // Remove animation after it completes
                 setTimeout(function() {
                     modal.querySelector('.modal-content').classList.remove('animate__animated', 'animate__fadeInUp');

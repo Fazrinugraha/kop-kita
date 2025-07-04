@@ -26,6 +26,14 @@
     </section>
    <!-- Hero section End -->
 
+@if(session('error'))
+    <div class="container">
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    </div>
+@endif
+
 <section class="section" style="padding-top: 40px; padding-bottom: 40px; background-color: #f8f9fa;">
     <div class="container-fluid">
         
@@ -36,6 +44,35 @@
             </h3>
             <p class="text-muted">Temukan informasi dan artikel terbaru kami</p>
         </div>
+<form method="GET" action="{{ url('artikel') }}" class="mb-4">
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <input type="text" name="cari" value="{{ request('cari') }}" class="form-control" placeholder="Cari judul artikel...">
+        </div>
+        <div class="col-md-2 mb-2">
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="mdi mdi-magnify"></i> Cari
+            </button>
+        </div>
+    </div>
+</form>
+
+<form method="GET" action="{{ url('artikel') }}" class="mb-4">
+    <div class="row">
+        <div class="col-md-3 mb-2">
+            <input type="date" name="tanggal_mulai" value="{{ request('tanggal_mulai') }}" class="form-control">
+        </div>
+        <div class="col-md-3 mb-2">
+            <input type="date" name="tanggal_selesai" value="{{ request('tanggal_selesai') }}" class="form-control">
+        </div>
+        <div class="col-md-2 mb-2">
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="mdi mdi-filter"></i> Filter Tanggal
+            </button>
+        </div>
+    </div>
+</form>
+
 
         <div class="row justify-content-start">
             <div class="col-lg-8">
@@ -82,6 +119,10 @@
                     </div>
                 </div>
                 @endforeach
+                <div class="mt-4">
+    {{ $dataview->artikel->links('vendor.pagination.bootstrap-4') }}
+</div>
+
                 
                 {{-- <nav aria-label="Page navigation" class="mt-5">
                     <ul class="pagination justify-content-center flex-wrap">

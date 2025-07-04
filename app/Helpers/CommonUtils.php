@@ -183,7 +183,7 @@ if (!function_exists('paginateRender')) {
 				</a>
 			</li>';
 		}
-		// LINK NUMBER					
+		// LINK NUMBER
 		$jumlah_page = ceil($total_data / $results_per_page); // Hitung jumlah halamannya
 		$jumlah_number = 1; // Tentukan jumlah link number sebelum dan sesudah page yang aktif
 		$start_number = ($page > $jumlah_number) ? $page - $jumlah_number : 1; // Untuk awal link number
@@ -198,7 +198,7 @@ if (!function_exists('paginateRender')) {
 
 		// LINK NEXT AND LAST
 		// Jika page sama dengan jumlah page, maka disable link NEXT nya
-		// Artinya page tersebut adalah page terakhir 
+		// Artinya page tersebut adalah page terakhir
 		if ($page == $jumlah_page) { // Jika page terakhir
 
 			$render .= '
@@ -322,5 +322,31 @@ if (!function_exists('getExcerpt')) {
 		}
 
 		return implode(' ', array_slice($words, 0, $wordLimit)) . '...';
+	}
+}
+
+if (!function_exists('getYouTubeId')) {
+	function getYouTubeId($url)
+	{
+		// Buang parameter tambahan seperti ?si=...
+		$parsed = parse_url($url);
+		$query = $parsed['query'] ?? '';
+
+		if (strpos($url, 'youtu.be/') !== false) {
+			$path = explode('/', $parsed['path'] ?? '');
+			return $path[1] ?? null;
+		}
+
+		if (strpos($url, 'youtube.com/watch') !== false && $query) {
+			parse_str($query, $params);
+			return $params['v'] ?? null;
+		}
+
+		if (strpos($url, 'youtube.com/embed/') !== false) {
+			$path = explode('/', $parsed['path']);
+			return $path[2] ?? null;
+		}
+
+		return null;
 	}
 }

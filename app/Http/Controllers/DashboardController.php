@@ -9,12 +9,19 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Slider;
 use App\Models\Team;
 use App\Models\Layanan;
-use App\Models\Jasa;
-use App\Models\Portofolio;
 use App\Models\Mitra;
 use App\Models\Event;
 use App\Models\Artikel;
-use App\Models\Pengabdian;
+use App\Models\VisiMisi;
+use App\Models\Sejarah;
+use App\Models\Karir;
+use App\Models\Regulasi;
+use App\Models\Faq;
+use App\Models\Dokumentasi;
+use App\Models\Kontak;
+use App\Models\Contact;
+use App\Models\Manfaat;
+
 
 class DashboardController extends Controller
 {
@@ -26,19 +33,26 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $dataview = new \stdClass();
-        $dataview->title = 'Dashboard | '.getTitle();
+        $dataview->title = 'Dashboard | ' . getTitle();
         $dataview->data_admin = Auth::guard('admin')->user();
-        
+
         $dataview->jum_slider = Slider::count();
         $dataview->jum_team = Team::count();
         $dataview->jum_layanan = Layanan::count();
-        $dataview->jum_jasa = Jasa::count();
-        $dataview->jum_portofolio = Portofolio::count();
         $dataview->jum_mitra = Mitra::count();
         $dataview->jum_event = Event::count();
         $dataview->jum_artikel = Artikel::count();
-        $dataview->jum_pengabdian = Pengabdian::count();
-        
+        $dataview->jum_visimisi = VisiMisi::count();
+        $dataview->jum_sejarah = Sejarah::count();
+        $dataview->jum_karir = Karir::count();
+        $dataview->jum_regulasi = Regulasi::count();
+        $dataview->jum_faq = Faq::count();
+        $dataview->jum_dokumentasi = Dokumentasi::count();
+        $dataview->jum_kontak = Kontak::count();
+        $dataview->jum_pesan = Contact::count();
+        $dataview->jum_manfaat = Manfaat::count();
+
+
         return view('pages/admin/dashboard', compact('dataview'));
     }
 

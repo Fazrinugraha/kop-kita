@@ -39,62 +39,62 @@
                             </div>
                         </div>
                         <div class="col-md-7 col-lg-8">
-                            <form id="contact-form" action="{{ route('contact.store') }}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="section-heading">
-                                            <h2><em>Contact Us</em> &amp; Get In <span>Touch</span></h2>
+                          <form id="contact-form" action="{{ route('contact.store') }}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="section-heading">
+                                        <h2><em>Hubungi Kami</em> &amp; Segera <span>Terhubung</span></h2>
+                                    </div>
+                                    @if($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
-                                        @if($errors->any())
-                                            <div class="alert alert-danger">
-                                                <ul>
-                                                    @foreach($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input type="text" name="name" id="name" placeholder="Your Name..." autocomplete="on" required value="{{ old('name') }}">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input type="text" name="surname" id="surname" placeholder="Your Surname..." autocomplete="on" required>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input type="email" name="email" id="email" placeholder="Your E-mail..." required>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input type="text" name="subject" id="subject" placeholder="Subject..." autocomplete="on">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-12">
-                                        <fieldset>
-                                            <textarea name="message" id="message" placeholder="Your Message" required></textarea>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="g-recaptcha" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
-                                        @if ($errors->has('g-recaptcha-response'))
-                                            <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
-                                        @endif
-                                    </div>
-                                    <!-- Tambahkan tombol kirim ini -->
-                                    <div class="col-12">
-                                        <fieldset>
-                                            <button type="submit" id="form-submit" class="blue-yellow-button">Send Message</button>
-                                        </fieldset>
-                                    </div>
+                                    @endif
                                 </div>
-                            </form>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" name="name" id="name" placeholder="Nama Anda..." autocomplete="on" required value="{{ old('name') }}">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" name="surname" id="surname" placeholder="Nama Belakang Anda..." autocomplete="on" required>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="email" name="email" id="email" placeholder="Email Anda..." required>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" name="subject" id="subject" placeholder="Perihal Pesan..." autocomplete="on">
+                                    </fieldset>
+                                </div>
+                                <div class="col-12">
+                                    <fieldset>
+                                        <textarea name="message" id="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                                    </fieldset>
+                                </div>
+                                <div class="col-12">
+                                    <div class="g-recaptcha" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                    @endif
+                                </div>
+                                <div class="col-12">
+                                    <fieldset>
+                                        <button type="submit" id="form-submit" class="blue-yellow-button">Kirim Pesan</button>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+
                             <div class="more-info">
                                 <div class="row">
                                     <div class="col-sm-4">

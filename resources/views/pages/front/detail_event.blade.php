@@ -84,43 +84,41 @@
 					</div>
 					
                 </div>
-                <div class="col-lg-4">
-                    
-                    <p style="font-size: 14px;"><b>Layanan Kami</b></p>
-    				<hr>
-    				<div class="card">
-    					<div class="card-body">
-    						<!--<h5 class="card-title">Layanan Kami</h5>-->
-    						<p class="card-text">Berikut layanan terbaik kami untuk mendukung kemajuan bisnis dan organisasi Anda</p>
-    					</div>
-    					<ul class="list-group list-group-flush">
-    					    @foreach ($dataview->layanan as $item)
-    					    <a href="javascript:;" data-toggle="modal" data-target=".detail{{ $item->id_layanan }}">
-    					        <li class="list-group-item">{!! $item->icon !!} <b>{{ $item->nama_layanan }}</b></li>
-    					    </a>
-    						
-    						
-    						<div class="modal fade detail{{ $item->id_layanan }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="myLargeModalLabel">{{ $item->nama_layanan }}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            {{ $item->deskripsi }}
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div>
-    						@endforeach
-    					</ul>
-    					<div class="card-body">
-    						<!--<a href="#" target="_blank" class="card-link"><i class="mdi mdi-web font-18 mr-2 align-middle"></i> Official Website</a>-->
-    					</div>
-    				</div>
-    				
+                    <!-- Kolom Kanan: Sidebar -->
+      <div class="col-lg-4">
+        <!-- Layanan Kami -->
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="mdi mdi-star-outline me-1"></i> Layanan Kami</h5>
+          </div>
+          <div class="card-body">
+            <div class="list-group">
+              @foreach ($dataview->layanan as $item)
+              <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#detail{{ $item->id_layanan }}" class="list-group-item list-group-item-action d-flex align-items-center hover-shadow-sm">
+                {!! $item->icon !!}<span class="ms-2">{{ $item->nama_layanan }}</span>
+              </a>
+
+              <!-- Modal -->
+              <div class="modal fade" id="detail{{ $item->id_layanan }}" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content rounded">
+                    <div class="modal-header bg-primary text-white">
+                      <h5 class="modal-title">{!! $item->icon !!} {{ $item->nama_layanan }}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      {{ $item->deskripsi }}
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
             </div>
 
             

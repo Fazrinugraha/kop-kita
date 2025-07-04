@@ -136,13 +136,20 @@
                         </a>
                         </div>
                         <div class="col-12 col-sm-6">
-                        <a href="https://mail.google.com/mail/?view=cm&to={{ getKontak()->email }}&su=Lamaran%20Pekerjaan%20{{ urlencode($item->judul_posisi) }}&body=Halo%2C%0A%0ASaya%20ingin%20melamar%20untuk%20posisi%3A%0A-%20Posisi%3A%20{{ urlencode($item->judul_posisi) }}%0A-%20Divisi%3A%20{{ urlencode($item->divisi) }}%0A-%20Penempatan%3A%20{{ urlencode($item->penempatan) }}%0A%0AMohon%20informasi%20lebih%20lanjut%20mengenai%20proses%20rekrutmen.%0A%0ATerima%20kasih."
+                        {{-- <a href="https://mail.google.com/mail/?view=cm&to={{ getKontak()->email }}&su=Lamaran%20Pekerjaan%20{{ urlencode($item->judul_posisi) }}&body=Halo%2C%0A%0ASaya%20ingin%20melamar%20untuk%20posisi%3A%0A-%20Posisi%3A%20{{ urlencode($item->judul_posisi) }}%0A-%20Divisi%3A%20{{ urlencode($item->divisi) }}%0A-%20Penempatan%3A%20{{ urlencode($item->penempatan) }}%0A%0AMohon%20informasi%20lebih%20lanjut%20mengenai%20proses%20rekrutmen.%0A%0ATerima%20kasih."
                             class="btn btn-success w-100 btn-sm"
                             target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-paper-plane me-2"></i>
                             <span class="d-none d-sm-inline">Lamar</span>
                             <span class="d-sm-none">Apply</span>
-                        </a>
+                        </a> --}}
+                         <a href="{{ url('kontak') }}" class="btn btn-success w-100 btn-sm" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-paper-plane me-2"></i>
+    <span class="d-none d-sm-inline">Lamar</span>
+    <span class="d-sm-none">Apply</span>
+</a>
+
+                        
                         </div>
                     </div>
                     </div>

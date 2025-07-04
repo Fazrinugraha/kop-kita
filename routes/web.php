@@ -53,8 +53,8 @@ Route::get('/manfaat', [BerandaController::class, 'manfaat'])->name('manfaat');
 Route::get('/event', [BerandaController::class, 'event'])->name('event');
 Route::get('/event/{id}/{slug}', [BerandaController::class, 'event_detail'])->name('detail.event');
 
-Route::get('/portofolio', [BerandaController::class, 'portofolio'])->name('portofolio');
-Route::get('/portofolio/{id}/{slug}', [BerandaController::class, 'portofolio_detail'])->name('detail.portofolio');
+// Route::get('/portofolio', [BerandaController::class, 'portofolio'])->name('portofolio');
+// Route::get('/portofolio/{id}/{slug}', [BerandaController::class, 'portofolio_detail'])->name('detail.portofolio');
 
 Route::get('/kontak', [BerandaController::class, 'kontak'])->name('kontak');
 
@@ -65,11 +65,11 @@ Route::get('/regulasi/download/{id}', [BerandaController::class, 'downloadRegula
 Route::get('/artikel', [BerandaController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{id}/{slug}', [BerandaController::class, 'artikel_detail'])->name('detail.artikel');
 
-Route::get('/informasi/kegiatan', [BerandaController::class, 'kegiatan'])->name('kegiatan');
-Route::get('/informasi/kegiatan/{id}/{slug}', [BerandaController::class, 'kegiatan_detail'])->name('detail.kegiatan');
+// Route::get('/informasi/kegiatan', [BerandaController::class, 'kegiatan'])->name('kegiatan');
+// Route::get('/informasi/kegiatan/{id}/{slug}', [BerandaController::class, 'kegiatan_detail'])->name('detail.kegiatan');
 
-Route::get('/informasi/pengabdian', [BerandaController::class, 'pengabdian'])->name('pengabdian');
-Route::get('/informasi/pengabdian/{id}/{slug}', [BerandaController::class, 'pengabdian_detail'])->name('detail.pengabdian');
+// Route::get('/informasi/pengabdian', [BerandaController::class, 'pengabdian'])->name('pengabdian');
+// Route::get('/informasi/pengabdian/{id}/{slug}', [BerandaController::class, 'pengabdian_detail'])->name('detail.pengabdian');
 
 Route::get('/informasi/karir', [BerandaController::class, 'karir'])->name('karir');
 
@@ -109,21 +109,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::put('/perbaharui-service/{id}', [LayananController::class, 'update'])->name('update.service');
     Route::delete('/hapus-service/{id}', [LayananController::class, 'destroy'])->name('delete.service');
 
-    Route::get('/manage-jasa', [JasaController::class, 'index'])->name('manage.jasa');
-    Route::post('/simpan-jasa', [JasaController::class, 'store'])->name('store.jasa');
-    Route::put('/perbaharui-jasa/{id}', [JasaController::class, 'update'])->name('update.jasa');
-    Route::delete('/hapus-jasa/{id}', [JasaController::class, 'destroy'])->name('delete.jasa');
-
-    Route::get('/manage-portofolio', [PortofolioController::class, 'index'])->name('manage.portofolio');
-    Route::post('/simpan-portofolio', [PortofolioController::class, 'store'])->name('store.portofolio');
-    Route::put('/perbaharui-portofolio/{id}', [PortofolioController::class, 'update'])->name('update.portofolio');
-    Route::delete('/hapus-portofolio/{id}', [PortofolioController::class, 'destroy'])->name('delete.portofolio');
-
-    Route::get('/manage-kegiatan', [KegiatanController::class, 'index'])->name('manage.kegiatan');
-    Route::post('/simpan-kegiatan', [KegiatanController::class, 'store'])->name('store.kegiatan');
-    Route::put('/perbaharui-kegiatan/{id}', [KegiatanController::class, 'update'])->name('update.kegiatan');
-    Route::delete('/hapus-kegiatan/{id}', [KegiatanController::class, 'destroy'])->name('delete.kegiatan');
-
     Route::get('/manage-mitra', [MitraController::class, 'index'])->name('manage.mitra');
     Route::post('/simpan-mitra', [MitraController::class, 'store'])->name('store.mitra');
     Route::put('/perbaharui-mitra/{id}', [MitraController::class, 'update'])->name('update.mitra');
@@ -138,11 +123,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/simpan-artikel', [ArtikelController::class, 'store'])->name('store.artikel');
     Route::put('/perbaharui-artikel/{id}', [ArtikelController::class, 'update'])->name('update.artikel');
     Route::delete('/hapus-artikel/{id}', [ArtikelController::class, 'destroy'])->name('delete.artikel');
-
-    Route::get('/manage-pengabdian', [PengabdianController::class, 'index'])->name('manage.pengabdian');
-    Route::post('/simpan-pengabdian', [PengabdianController::class, 'store'])->name('store.pengabdian');
-    Route::put('/perbaharui-pengabdian/{id}', [PengabdianController::class, 'update'])->name('update.pengabdian');
-    Route::delete('/hapus-pengabdian/{id}', [PengabdianController::class, 'destroy'])->name('delete.pengabdian');
 
     Route::get('/manage-kontak', [KontakController::class, 'index'])->name('manage.kontak');
     Route::put('/perbaharui-kontak/{id}', [KontakController::class, 'update'])->name('update.kontak');
@@ -182,6 +162,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('/manage-dokumentasi', [DokumentasiController::class, 'index'])->name('manage.dokumentasi');
     Route::post('/simpan-dokumentasi', [DokumentasiController::class, 'store'])->name('dokumentasi.store');
+    Route::get('/admin/dokumentasi/{id}/edit', [DokumentasiController::class, 'edit'])->name('dokumentasi.edit');
     Route::put('/perbaharui-dokumentasi/{id}', [DokumentasiController::class, 'update'])->name('dokumentasi.update');
     Route::delete('/hapus-dokumentasi/{id}', [DokumentasiController::class, 'destroy'])->name('dokumentasi.destroy');
     Route::delete('/dokumentasi/media/{id}', [DokumentasiController::class, 'destroyMedia'])->name('dokumentasi.media.destroy');
